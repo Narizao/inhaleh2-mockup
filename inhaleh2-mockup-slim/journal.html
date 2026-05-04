@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Journal — InhaleH₂</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="Protocols, science briefings, and practitioner conversations from the InhaleH₂ team." />
+<link rel="icon" type="image/svg+xml" href="assets/img/icon-blue.svg" />
+<link rel="stylesheet" href="assets/css/style.css" />
+<style>
+  .journal-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--s-6);
+    margin-top: var(--s-10);
+  }
+  .journal-card {
+    background: #fff;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid rgba(0,17,43,.06);
+    display: flex;
+    flex-direction: column;
+    transition: transform var(--t-med), box-shadow var(--t-med);
+  }
+  .journal-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+  .journal-card .img {
+    aspect-ratio: 16/10;
+    background: var(--paper-2);
+    overflow: hidden;
+  }
+  .journal-card .img img { width: 100%; height: 100%; object-fit: cover; transition: transform var(--t-slow) var(--ease); }
+  .journal-card:hover .img img { transform: scale(1.04); }
+  .journal-card .body { padding: var(--s-6); flex: 1; display: flex; flex-direction: column; gap: var(--s-3); }
+  .journal-card .meta {
+    display: flex; gap: 12px; font-size: 12px; color: var(--slate);
+    letter-spacing: .04em; text-transform: uppercase; font-weight: 600;
+  }
+  .journal-card .meta .tag { color: var(--blue-500); }
+  .journal-card h3 { font-size: 20px; margin: 0; letter-spacing: -.015em; line-height: 1.25; }
+  .journal-card p { color: var(--slate); font-size: 14px; margin: 0; }
+  .journal-card .read {
+    margin-top: auto; padding-top: var(--s-3);
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 13px; font-weight: 600; color: var(--blue-500);
+  }
+  .featured {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: var(--s-10);
+    background: #fff;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    border: 1px solid rgba(0,17,43,.06);
+  }
+  .featured .img { aspect-ratio: auto; min-height: 420px; }
+  .featured .img img { width: 100%; height: 100%; object-fit: cover; }
+  .featured .body { padding: clamp(32px, 4vw, 56px); display: flex; flex-direction: column; justify-content: center; gap: var(--s-4); }
+  .featured h2 { font-size: clamp(28px, 2.6vw, 40px); margin: 0; letter-spacing: -.02em; }
+  .featured p { color: var(--slate); font-size: 16px; margin: 0; max-width: 52ch; }
+  .category-pills {
+    display: flex; gap: var(--s-2); flex-wrap: wrap;
+    margin-top: var(--s-6); margin-bottom: var(--s-8);
+  }
+  .pill {
+    padding: 8px 16px; border-radius: var(--radius-pill);
+    border: 1px solid rgba(0,17,43,.14);
+    font-size: 13px; font-weight: 600; color: var(--ink-2);
+    transition: all var(--t-fast); cursor: pointer;
+  }
+  .pill:hover, .pill.active { background: var(--ink); color: #fff; border-color: var(--ink); }
+  @media (max-width: 1024px) {
+    .journal-grid { grid-template-columns: 1fr 1fr; }
+    .featured { grid-template-columns: 1fr; }
+    .featured .img { min-height: 260px; }
+  }
+  @media (max-width: 640px) {
+    .journal-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="announce">
+  <div class="container announce-track">
+    <span><span class="announce-dot"></span>New briefing every other week · Subscribe below for the science-only version</span>
+  </div>
+</div>
+
+<header class="nav">
+  <div class="container nav-inner">
+    <a class="nav-logo" href="index.html"><img src="assets/img/logo-color.svg" alt="InhaleH2" /></a>
+    <nav class="nav-links">
+      <a href="product.html">Inhaler</a>
+      <a href="science.html">Science</a>
+      <a href="practitioners.html">For Practitioners</a>
+      <a href="story.html">Our Story</a>
+      <a href="journal.html">Journal</a>
+    </nav>
+    <div class="nav-actions">
+      <div class="audience-toggle">
+        <button class="active" data-target="index.html">Personal</button>
+        <button data-target="practitioners.html">Clinical</button>
+      </div>
+      <a class="btn btn--ink btn--sm" href="product.html">Shop the inhaler</a>
+    </div>
+  </div>
+</header>
+
+<!-- Page hero -->
+<section class="page-hero">
+  <div class="container">
+    <div class="breadcrumb"><a href="index.html">Home</a> · <span>Journal</span></div>
+    <h1>Notes from the hydrogen lab.</h1>
+    <p class="lead">Protocols, research digests, and practitioner interviews. No marketing. No hype. Just the long-form thinking behind a category we're trying to rebuild around one idea: measurable dose.</p>
+  </div>
+</section>
+
+<!-- Categories -->
+<section class="section section--tight" style="padding-top: 0; padding-bottom: 32px;">
+  <div class="container">
+    <div class="category-pills" style="margin-top: 32px;">
+      <span class="pill active">All</span>
+      <span class="pill">Science</span>
+      <span class="pill">Protocols</span>
+      <span class="pill">Practitioner Q&amp;A</span>
+      <span class="pill">Product</span>
+      <span class="pill">Research digest</span>
+    </div>
+  </div>
+</section>
+
+<!-- Featured -->
+<section class="section section--tight" style="padding-top: 0;">
+  <div class="container">
+    <div class="featured">
+      <div class="img">
+        <img src="assets/img/atm-bubbles-2.jpg" alt="" />
+      </div>
+      <div class="body">
+        <div class="meta">
+          <span class="tag">Featured · Science</span>
+          <span>12 min read</span>
+        </div>
+        <h2>FiH₂, explained without the jargon.</h2>
+        <p>Fraction of Inspired Hydrogen is a spec most hydrogen companies don't want to discuss. Here's what it is, why it's the only number that matters for inhalation, and how we designed the InhaleH₂ system around it end-to-end.</p>
+        <div>
+          <a class="btn btn--ink" href="#" style="margin-top: 16px;">Read the full briefing →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Grid -->
+<section class="section">
+  <div class="container">
+    <div class="journal-grid">
+
+      <a class="journal-card" href="#">
+        <div class="img"><img src="assets/img/atm-people-1.jpg" alt="" /></div>
+        <div class="body">
+          <div class="meta"><span class="tag">Protocols</span><span>6 min</span></div>
+          <h3>The 15-minute morning protocol</h3>
+          <p>Why we landed on a single daily session, when to run it, and how to pair it with HRV tracking for objective feedback.</p>
+          <span class="read">Read article →</span>
+        </div>
+      </a>
+
+      <a class="journal-card" href="#">
+        <div class="img"><img src="assets/img/atm-sunrise-2.jpg" alt="" /></div>
+        <div class="body">
+          <div class="meta"><span class="tag">Research digest</span><span>8 min</span></div>
+          <h3>2026 hydrogen research, in one sitting</h3>
+          <p>Three papers worth reading from the past six months — selective antioxidant mechanisms, inflammation markers, and exercise recovery.</p>
+          <span class="read">Read article →</span>
+        </div>
+      </a>
+
+      <a class="journal-card" href="#">
+        <div class="img"><img src="assets/img/atm-people-2.jpg" alt="" /></div>
+        <div class="body">
+          <div class="meta"><span class="tag">Practitioner Q&amp;A</span><span>9 min</span></div>
+          <h3>Dr. Anya Kowalski on building a protocol that sticks</h3>
+          <p>How a four-clinic functional medicine group integrates inhalation sessions into complex patient protocols without losing adherence.</p>
+          <span class="read">Read article →</span>
+        </div>
+      </a>
+
+      <a class="journal-card" href="#">
+        <div class="img"><img src="assets/img/atm-bubbles-1.jpg" alt="" /></div>
+        <div class="body">
+          <div class="meta"><span class="tag">Science</span><span>11 min</span></div>
+          <h3>Why bioavailability is the wrong frame for hydrogen water</h3>
+          <p>When a molecule this small crosses every membrane, "bioavailability" obscures more than it reveals. Here's a better mental model.</p>
+          <span class="read">Read article →</span>
+        </div>
+      </a>
+
+      <a class="journal-card" href="#">
+        <div class="img"><img src="assets/img/atm-nature.jpg" alt="" /></div>
+        <div class="body">
+          <div class="meta"><span class="tag">Product</span><span>4 min</span></div>
+          <h3>What's inside the InhaleH₂ cell</h3>
+          <p>A teardown walkthrough of the SPE/PEM electrolysis cell — platinum coating, titanium substrate, membrane selection, longevity testing.</p>
+          <span class="read">Read article →</span>
+        </div>
+      </a>
+
+      <a class="journal-card" href="#">
+        <div class="img"><img src="assets/img/atm-sunrise-3.jpg" alt="" /></div>
+        <div class="body">
+          <div class="meta"><span class="tag">Protocols</span><span>7 min</span></div>
+          <h3>Pairing InhaleH₂ with endurance training</h3>
+          <p>Six weeks of field notes from an ultra-endurance coach experimenting with pre-session and post-session usage windows.</p>
+          <span class="read">Read article →</span>
+        </div>
+      </a>
+
+      <a class="journal-card" href="#">
+        <div class="img"><img src="assets/img/atm-clouds.jpg" alt="" /></div>
+        <div class="body">
+          <div class="meta"><span class="tag">Science</span><span>5 min</span></div>
+          <h3>Why hydrogen's safety profile is so unusual</h3>
+          <p>Most wellness-adjacent compounds have a dose-limit ceiling. Hydrogen doesn't look like that — and this post explains why, with citations.</p>
+          <span class="read">Read article →</span>
+        </div>
+      </a>
+
+      <a class="journal-card" href="#">
+        <div class="img"><img src="assets/img/atm-people-3.jpg" alt="" /></div>
+        <div class="body">
+          <div class="meta"><span class="tag">Practitioner Q&amp;A</span><span>6 min</span></div>
+          <h3>Neuroinflammation protocols at Carrick Institute</h3>
+          <p>Clinical conversation on how InhaleH₂ became part of a neuroinflammation support stack — dosing windows, pairing, and measurement.</p>
+          <span class="read">Read article →</span>
+        </div>
+      </a>
+
+      <a class="journal-card" href="#">
+        <div class="img"><img src="assets/img/atm-bubbles-2.jpg" alt="" /></div>
+        <div class="body">
+          <div class="meta"><span class="tag">Research digest</span><span>10 min</span></div>
+          <h3>What the next five years of H₂ research look like</h3>
+          <p>Dr. Tyler LeBaron, our CSO, outlines the clinical research directions he's most excited about — and the ones he's skeptical of.</p>
+          <span class="read">Read article →</span>
+        </div>
+      </a>
+
+    </div>
+
+    <div style="margin-top: var(--s-12); text-align: center;">
+      <a class="btn btn--ghost btn--lg" href="#">Load more articles →</a>
+    </div>
+  </div>
+</section>
+
+<!-- Newsletter CTA -->
+<section class="section section--tight">
+  <div class="container">
+    <div class="b2b-band" style="background: linear-gradient(135deg, var(--ink) 0%, var(--blue-700) 100%);">
+      <div class="b2b-band-grid">
+        <div>
+          <span class="eyebrow" style="color: var(--mint);">The science-only newsletter</span>
+          <h2>A briefing every other Tuesday.</h2>
+          <p class="lead" style="color: rgba(255,255,255,.78); max-width: 520px;">One research digest or protocol deep-dive. No promotions. No discount codes. Just the long-form thinking we'd want if we were on the other side of the inbox.</p>
+          <div style="display: flex; gap: 12px; margin-top: 24px; flex-wrap: wrap; max-width: 520px;">
+            <input type="email" placeholder="you@inhalemore.com" style="flex:1; min-width: 200px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.22); color: #fff; padding: 14px 18px; border-radius: 999px; font-size: 15px; outline: none;" />
+            <button class="btn btn--primary btn--lg">Subscribe →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="assets/img/logo-white.svg" alt="InhaleH2" />
+        <p>The first closed-system hydrogen inhaler engineered around dose, not hype.</p>
+        <div class="newsletter"><input type="email" placeholder="you@inhalemore.com" /><button>Subscribe</button></div>
+      </div>
+      <div class="footer-col"><h5>Shop</h5><ul><li><a href="product.html">The Inhaler</a></li><li><a href="#">Replacement parts</a></li><li><a href="#">Accessories</a></li><li><a href="practitioners.html">Wholesale</a></li></ul></div>
+      <div class="footer-col"><h5>Learn</h5><ul><li><a href="science.html">Science</a></li><li><a href="#">Protocols</a></li><li><a href="#">Research library</a></li><li><a href="journal.html">Journal</a></li></ul></div>
+      <div class="footer-col"><h5>Company</h5><ul><li><a href="story.html">Our story</a></li><li><a href="#">Press</a></li><li><a href="#">Careers</a></li><li><a href="#">Contact</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 InhaleH₂ Technologies. Hydrogen Therapy Perfected.</div>
+      <div class="legal"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Disclaimer</a><a href="#">Accessibility</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/site.js"></script>
+</body>
+</html>
