@@ -4,12 +4,648 @@
 <meta charset="utf-8" />
 <title>Our Story — InhaleH₂</title>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="description" content="Seven years of R&D. Two scientists. One stubborn belief: hydrogen works, but only if you can actually deliver a defined dose." />
+<meta name="description" content="Hydrogen works. Delivery has been the problem. Seven years and one closed-loop system later, here is what changed." />
 <link rel="icon" type="image/svg+xml" href="assets/img/icon-blue.svg" />
 <link rel="stylesheet" href="assets/css/style.css" />
-</head>
-<body>
+<style>
+/* =========================================================
+   Our Story — Editorial redesign
+   Self-contained additions on top of the global style.css
+   ========================================================= */
 
+:root {
+  --story-paper: #FAF8F5;
+  --story-cream: #EFECEA;
+  --story-ink: #00112B;
+  --story-ink-2: #02194B;
+  --story-blue: #1238C4;
+  --story-mint: #C1F4F7;
+  --story-cyan: #27CEF4;
+}
+
+body { background: var(--story-paper); }
+
+/* Editorial container — slightly narrower for reading rhythm */
+.story-container {
+  width: min(1280px, 92vw);
+  margin-inline: auto;
+}
+.story-narrow {
+  width: min(800px, 92vw);
+  margin-inline: auto;
+}
+
+/* ============== Cinematic Hero ============== */
+.story-hero {
+  position: relative;
+  min-height: 100vh;
+  background: var(--story-ink);
+  color: #fff;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  isolation: isolate;
+}
+.story-hero::before {
+  content: "";
+  position: absolute; inset: 0;
+  background-image: url("assets/img/atm-sunrise-2.jpg");
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.55) saturate(0.9);
+  z-index: -2;
+}
+.story-hero::after {
+  content: "";
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse at 70% 30%, rgba(64,119,255,.32), transparent 60%),
+    linear-gradient(180deg, rgba(0,17,43,.50) 0%, rgba(0,17,43,.10) 35%, rgba(0,17,43,.85) 100%);
+  z-index: -1;
+}
+.story-hero-inner {
+  width: 100%;
+  padding-block: 140px 80px;
+}
+.story-eyebrow {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--story-mint);
+  display: flex; align-items: center; gap: 14px;
+  margin-bottom: 36px;
+}
+.story-eyebrow::before {
+  content: "";
+  width: 28px; height: 1px;
+  background: var(--story-mint);
+  display: inline-block;
+}
+.story-hero h1 {
+  font-size: clamp(48px, 8vw, 132px);
+  font-weight: 600;
+  line-height: 0.92;
+  letter-spacing: -0.045em;
+  margin: 0 0 40px;
+  color: #fff;
+  max-width: 14ch;
+}
+.story-hero h1 em {
+  font-weight: 500;
+  font-style: italic;
+  color: var(--story-mint);
+}
+.story-hero .lede {
+  max-width: 56ch;
+  font-size: clamp(18px, 1.4vw, 22px);
+  line-height: 1.5;
+  color: rgba(255,255,255,.82);
+  margin: 0;
+}
+.story-scroll-hint {
+  position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
+  font-size: 11px; letter-spacing: .3em; text-transform: uppercase;
+  color: rgba(255,255,255,.55); display: flex; align-items: center; gap: 14px;
+}
+.story-scroll-hint::after {
+  content: "";
+  width: 1px; height: 36px;
+  background: linear-gradient(to bottom, rgba(255,255,255,.6), transparent);
+  animation: scrollLine 2.4s ease-in-out infinite;
+}
+@keyframes scrollLine {
+  0%, 100% { opacity: .3; transform: scaleY(.6); }
+  50% { opacity: 1; transform: scaleY(1); }
+}
+
+/* ============== Chapter marker ============== */
+.story-chapter {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 60px;
+  padding-block: clamp(80px, 12vw, 160px);
+  align-items: start;
+}
+.story-chapter-mark {
+  position: sticky; top: 100px;
+  font-size: 12px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--story-blue);
+  font-weight: 600;
+  display: flex; flex-direction: column; gap: 8px;
+}
+.story-chapter-mark .num {
+  font-family: serif;
+  font-size: 56px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--story-ink);
+  font-style: italic;
+}
+
+/* ============== Manifesto block ============== */
+.manifesto {
+  background: var(--story-cream);
+  padding-block: clamp(100px, 14vw, 200px);
+  position: relative;
+  overflow: hidden;
+}
+.manifesto::before {
+  content: "";
+  position: absolute; top: 80px; right: -100px;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(18,56,196,.06), transparent 70%);
+  pointer-events: none;
+}
+.manifesto-text {
+  font-size: clamp(34px, 5.5vw, 78px);
+  line-height: 1.04;
+  letter-spacing: -0.035em;
+  font-weight: 600;
+  color: var(--story-ink);
+  margin: 0;
+}
+.manifesto-text em {
+  color: var(--story-blue);
+  font-style: italic;
+  font-weight: 500;
+}
+.manifesto-attribution {
+  margin-top: 48px;
+  font-size: 13px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--story-ink);
+  opacity: 0.55;
+  font-weight: 600;
+}
+
+/* ============== Two-column body sections ============== */
+.story-body {
+  font-size: clamp(17px, 1.2vw, 19px);
+  line-height: 1.65;
+  color: var(--story-ink-2);
+  max-width: 64ch;
+}
+.story-body h2 {
+  font-size: clamp(36px, 4.8vw, 64px);
+  font-weight: 700;
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+  margin: 0 0 32px;
+  color: var(--story-ink);
+}
+.story-body h2 em { font-style: italic; font-weight: 500; color: var(--story-blue); }
+.story-body p { margin: 0 0 20px; }
+.story-body p:first-of-type::first-letter {
+  font-size: 4em;
+  font-weight: 700;
+  float: left;
+  line-height: 0.9;
+  margin: 8px 12px 0 0;
+  color: var(--story-blue);
+  letter-spacing: -0.05em;
+}
+.story-body strong { font-weight: 600; color: var(--story-ink); }
+
+/* ============== Pull quote ============== */
+.pull-quote {
+  background: var(--story-ink);
+  color: #fff;
+  padding-block: clamp(100px, 14vw, 200px);
+  position: relative;
+  overflow: hidden;
+}
+.pull-quote::before {
+  content: "";
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse at 80% 30%, rgba(64,119,255,.22), transparent 60%),
+    radial-gradient(ellipse at 10% 80%, rgba(39,206,244,.10), transparent 50%);
+}
+.pull-quote-inner { position: relative; }
+.pull-quote .mark {
+  font-family: Georgia, serif;
+  font-size: 220px;
+  font-weight: 400;
+  line-height: 0.6;
+  color: var(--story-blue);
+  opacity: 0.5;
+  display: block;
+  margin-bottom: -40px;
+}
+.pull-quote blockquote {
+  font-size: clamp(28px, 4vw, 56px);
+  line-height: 1.18;
+  letter-spacing: -0.025em;
+  font-weight: 500;
+  margin: 0 0 48px;
+  color: #fff;
+  max-width: 24ch;
+}
+.pull-quote blockquote em { color: var(--story-mint); font-style: italic; font-weight: 400; }
+.pull-quote .who {
+  display: flex; gap: 20px; align-items: center;
+}
+.pull-quote .who img {
+  width: 64px; height: 64px; border-radius: 50%; object-fit: cover;
+  border: 2px solid rgba(255,255,255,.14);
+}
+.pull-quote .who .name {
+  color: #fff; font-weight: 600; font-size: 18px;
+  letter-spacing: -0.005em;
+}
+.pull-quote .who .role {
+  font-size: 13px; color: rgba(255,255,255,.65);
+  letter-spacing: .04em; margin-top: 2px;
+}
+
+/* ============== Timeline (vertical, editorial) ============== */
+.timeline {
+  background: var(--story-paper);
+  padding-block: clamp(100px, 14vw, 180px);
+}
+.timeline-head {
+  margin-bottom: 96px;
+}
+.timeline-head h2 {
+  font-size: clamp(40px, 5vw, 76px);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.02;
+  margin: 16px 0 0;
+  max-width: 18ch;
+}
+.timeline-head h2 em { font-style: italic; font-weight: 500; color: var(--story-blue); }
+.timeline-list {
+  position: relative;
+  padding-left: 80px;
+  border-left: 1px solid rgba(0,17,43,.12);
+}
+.timeline-item {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 60px;
+  padding-block: 56px;
+  position: relative;
+  border-bottom: 1px solid rgba(0,17,43,.08);
+}
+.timeline-item:last-child { border-bottom: 0; }
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  left: -88px; top: 64px;
+  width: 16px; height: 16px;
+  border-radius: 50%;
+  background: var(--story-paper);
+  border: 2px solid var(--story-blue);
+}
+.timeline-item .year {
+  font-family: Georgia, serif;
+  font-style: italic;
+  font-size: 56px;
+  font-weight: 400;
+  line-height: 1;
+  color: var(--story-ink);
+  letter-spacing: -0.02em;
+}
+.timeline-item .year-label {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--story-blue);
+  font-style: normal;
+  margin-top: 8px;
+}
+.timeline-item h3 {
+  font-size: clamp(22px, 2.4vw, 32px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  margin: 0 0 12px;
+  color: var(--story-ink);
+}
+.timeline-item p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--story-ink-2);
+  opacity: 0.75;
+  margin: 0;
+  max-width: 56ch;
+}
+
+/* ============== Founders (cinematic portraits) ============== */
+.founders {
+  background: var(--story-cream);
+  padding-block: clamp(100px, 14vw, 180px);
+}
+.founders-head {
+  text-align: center;
+  margin-bottom: 80px;
+}
+.founders-head h2 {
+  font-size: clamp(40px, 5vw, 76px);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.02;
+  margin: 16px 0 24px;
+  max-width: 18ch;
+  margin-inline: auto;
+}
+.founders-head h2 em { font-style: italic; font-weight: 500; color: var(--story-blue); }
+.founders-head p {
+  max-width: 56ch;
+  margin: 0 auto;
+  font-size: 18px;
+  color: var(--story-ink-2);
+  opacity: 0.75;
+  line-height: 1.5;
+}
+.founders-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+}
+.founder {
+  background: #fff;
+  border-radius: 32px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.founder-portrait {
+  aspect-ratio: 4/5;
+  overflow: hidden;
+  position: relative;
+  background: linear-gradient(135deg, var(--story-ink) 0%, var(--story-blue) 100%);
+}
+.founder-portrait img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+}
+.founder-body {
+  padding: 40px;
+  flex: 1;
+  display: flex; flex-direction: column;
+}
+.founder-name {
+  font-size: clamp(22px, 2.2vw, 30px);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+  color: var(--story-ink);
+  margin: 0 0 6px;
+}
+.founder-role {
+  font-size: 12px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--story-blue);
+  font-weight: 600;
+  margin-bottom: 24px;
+}
+.founder-bio {
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--story-ink-2);
+  opacity: 0.78;
+  margin: 0 0 28px;
+}
+.founder-quote {
+  font-size: 16px;
+  font-style: italic;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--story-ink);
+  border-left: 2px solid var(--story-blue);
+  padding-left: 16px;
+  margin: 0;
+  letter-spacing: -0.005em;
+}
+
+/* ============== Lab / Process imagery grid ============== */
+.lab-section {
+  padding-block: clamp(100px, 14vw, 180px);
+  background: var(--story-paper);
+}
+.lab-head {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  margin-bottom: 64px;
+  align-items: end;
+}
+.lab-head h2 {
+  font-size: clamp(40px, 5vw, 72px);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.02;
+  margin: 16px 0 0;
+}
+.lab-head p {
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--story-ink-2);
+  opacity: 0.78;
+  margin: 0;
+}
+.lab-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: 320px 320px;
+  gap: 16px;
+}
+.lab-card {
+  border-radius: 24px;
+  overflow: hidden;
+  position: relative;
+  background: var(--story-ink);
+  color: #fff;
+  isolation: isolate;
+}
+.lab-card.tall { grid-row: span 2; }
+.lab-card img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  z-index: -2;
+}
+.lab-card::after {
+  content: "";
+  position: absolute; inset: 0; z-index: -1;
+  background: linear-gradient(180deg, transparent 40%, rgba(0,17,43,.85) 100%);
+}
+.lab-card .caption {
+  position: absolute; bottom: 28px; left: 28px; right: 28px;
+}
+.lab-card .label {
+  display: block;
+  font-size: 11px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--story-mint);
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.lab-card .title {
+  font-size: clamp(18px, 1.6vw, 24px);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.2;
+  margin: 0;
+  color: #fff;
+}
+
+/* ============== Principles (manifesto-style) ============== */
+.principles {
+  padding-block: clamp(100px, 14vw, 180px);
+  background: var(--story-ink);
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+.principles::before {
+  content: "";
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse at 80% 10%, rgba(64,119,255,.18), transparent 60%);
+}
+.principles-inner { position: relative; }
+.principles-eyebrow {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--story-mint);
+  display: flex; align-items: center; gap: 14px;
+  margin-bottom: 32px;
+}
+.principles-eyebrow::before {
+  content: "";
+  width: 28px; height: 1px; background: var(--story-mint);
+}
+.principles h2 {
+  font-size: clamp(40px, 5vw, 72px);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.02;
+  margin: 0 0 80px;
+  color: #fff;
+  max-width: 16ch;
+}
+.principles h2 em { font-style: italic; font-weight: 500; color: var(--story-mint); }
+.principles-list {
+  display: grid; gap: 0;
+}
+.principle {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 60px;
+  padding-block: 48px;
+  border-top: 1px solid rgba(255,255,255,.10);
+  align-items: start;
+}
+.principle:last-child { border-bottom: 1px solid rgba(255,255,255,.10); }
+.principle .num {
+  font-family: Georgia, serif;
+  font-size: 36px;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--story-mint);
+  line-height: 1;
+}
+.principle h4 {
+  font-size: clamp(22px, 2.4vw, 32px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  margin: 0 0 16px;
+  color: #fff;
+}
+.principle p {
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.55;
+  color: rgba(255,255,255,.72);
+  max-width: 56ch;
+}
+
+/* ============== Future / closing CTA ============== */
+.closing {
+  padding-block: clamp(120px, 16vw, 220px);
+  background: var(--story-paper);
+  position: relative;
+  overflow: hidden;
+}
+.closing::before {
+  content: "";
+  position: absolute; inset: 0;
+  background-image: url("assets/img/atm-sunrise-3.jpg");
+  background-size: cover;
+  background-position: center;
+  opacity: 0.10;
+  z-index: 0;
+}
+.closing-inner {
+  position: relative; z-index: 1;
+  text-align: center;
+}
+.closing .mark {
+  font-size: 12px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--story-blue);
+  font-weight: 600;
+  margin-bottom: 32px;
+  display: inline-block;
+}
+.closing h2 {
+  font-size: clamp(48px, 8vw, 128px);
+  font-weight: 600;
+  letter-spacing: -0.045em;
+  line-height: 0.95;
+  margin: 0 0 56px;
+  color: var(--story-ink);
+  max-width: 16ch;
+  margin-inline: auto;
+}
+.closing h2 em { font-style: italic; font-weight: 500; color: var(--story-blue); }
+.closing-ctas {
+  display: inline-flex; gap: 16px; flex-wrap: wrap; justify-content: center;
+}
+
+/* ============== Disable original story bits ============== */
+.story-redesign-active .original-story-fallback { display: none; }
+
+/* ============== Responsive ============== */
+@media (max-width: 989px) {
+  .story-chapter { grid-template-columns: 1fr; gap: 32px; }
+  .story-chapter-mark { position: static; }
+  .timeline-list { padding-left: 32px; }
+  .timeline-item { grid-template-columns: 1fr; gap: 16px; }
+  .timeline-item::before { left: -40px; }
+  .founders-grid { grid-template-columns: 1fr; }
+  .lab-head { grid-template-columns: 1fr; gap: 24px; }
+  .lab-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: 320px 320px 320px;
+  }
+  .lab-card.tall { grid-row: span 1; }
+  .principle { grid-template-columns: 60px 1fr; gap: 24px; }
+}
+
+/* Subtle scroll-reveal */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity .9s ease, transform .9s cubic-bezier(.2,.7,.2,1); }
+.reveal.in { opacity: 1; transform: none; }
+</style>
+</head>
+<body class="story-redesign-active">
+
+<!-- Announce + nav (kept tight, brand-consistent) -->
 <div class="announce">
   <div class="container announce-track">
     <span><span class="announce-dot"></span>Built over 7 years · Recognized under Canada's SR&amp;ED program</span>
@@ -24,7 +660,7 @@
       <a href="product.html">Inhaler</a>
       <a href="science.html">Science</a>
       <a href="practitioners.html">For Practitioners</a>
-      <a href="story.html">Our Story</a>
+      <a href="story-redesign.html">Our Story</a>
       <a href="journal.html">Journal</a>
     </nav>
     <div class="nav-actions">
@@ -37,154 +673,270 @@
   </div>
 </header>
 
-<!-- Page hero -->
-<section class="page-hero">
-  <div class="container">
-    <div class="breadcrumb"><a href="index.html">Home</a> · <span>Our Story</span></div>
-    <h1>Built by people who couldn't let the dose question go.</h1>
-    <p class="lead">Seven years ago, two scientists in the molecular hydrogen field looked at every consumer product on the market and kept asking the same question: <em class="italic-display">how much of this is actually reaching the body?</em> Nobody had a good answer. So they built one.</p>
+<!-- =========================================================
+     CINEMATIC HERO
+     ========================================================= -->
+<section class="story-hero">
+  <div class="story-container story-hero-inner">
+    <span class="story-eyebrow">The InhaleH₂ story · Chapter zero</span>
+    <h1>Hydrogen works. <em>Delivery has been the problem.</em></h1>
+    <p class="lede">Seven years. Two scientists. One stubborn belief: that the most-studied wellness molecule of the last decade deserves a delivery device built around the only number that matters — the dose that actually reaches the lungs.</p>
+  </div>
+  <div class="story-scroll-hint">Scroll</div>
+</section>
+
+<!-- =========================================================
+     MANIFESTO
+     ========================================================= -->
+<section class="manifesto">
+  <div class="story-narrow">
+    <p class="manifesto-text">
+      We didn't set out to make another hydrogen product. We set out to make the question of <em>how much you're getting</em> the easiest question in the category to answer.
+    </p>
+    <div class="manifesto-attribution">— A note from the founders</div>
   </div>
 </section>
 
-<!-- Origin -->
-<section class="section problem">
-  <div class="container problem-grid">
-    <div class="problem-image">
-      <img src="assets/img/atm-people-2.jpg" alt="Founders" />
-    </div>
-    <div>
-      <span class="eyebrow">Origin</span>
-      <h2>The problem that wouldn't leave us alone.</h2>
-      <p class="lead">Alex Tarnava invented the open-cup hydrogen water tablet. Dr. Tyler LeBaron, MSc, PhD, is one of the most-cited researchers in molecular hydrogen. Between them they'd seen the research move from a curiosity to a serious field — but the delivery devices lagged years behind the science.</p>
-      <p>Most consumer products couldn't tell you — couldn't even measure — how much hydrogen a user actually inhaled. Concentration shifted breath-to-breath. "PPM" marketing claims described water at rest, not what a person was drinking. For a molecule this well-studied, the gap between the science and what people were buying was uncomfortable.</p>
-      <p>InhaleH₂ started as an engineering project to close that gap.</p>
-    </div>
+<!-- =========================================================
+     CHAPTER 01 — Origin
+     ========================================================= -->
+<section class="story-container story-chapter">
+  <div class="story-chapter-mark">
+    <span class="num">I.</span>
+    <span>Origin</span>
+  </div>
+  <div class="story-body">
+    <h2>The problem that <em>wouldn't leave us alone.</em></h2>
+    <p>Alex Tarnava invented the open-cup hydrogen water tablet. Dr. Tyler LeBaron, MSc, PhD, is one of the most-cited researchers in molecular hydrogen. Between them, they had spent years watching the science move from a curiosity to a serious field — and the consumer products lag behind.</p>
+    <p>Most products on the market couldn't tell you how much hydrogen a user actually inhaled. Concentration shifted breath to breath. <strong>"PPM" marketing claims described water at rest, not what a person was drinking.</strong> For a molecule this well-studied, the gap between the science and what people were buying was becoming embarrassing.</p>
+    <p>InhaleH₂ started as a private engineering project to close that gap. We didn't have a product roadmap. We had one question, written on a whiteboard: <em>what would it take to deliver a defined concentration of H₂ to the lungs, breath after breath, without leakage?</em></p>
   </div>
 </section>
 
-<!-- Timeline -->
-<section class="section">
-  <div class="container">
-    <span class="eyebrow">Timeline</span>
-    <h2>Seven years of R&amp;D, in plain prose.</h2>
-    <div class="steps" style="margin-top: var(--s-10);">
-      <div class="step">
-        <span class="n">1</span>
-        <h4>2019 — First principles</h4>
-        <p>Started with a question, not a product: what would it take to deliver a defined concentration of H₂ to the lungs, breath after breath, without leakage?</p>
-      </div>
-      <div class="step">
-        <span class="n">2</span>
-        <h4>2020–2022 — Cell &amp; membrane</h4>
-        <p>Moved to SPE/PEM electrolysis with platinum-coated titanium electrodes. Pure H₂ output, no byproducts, durable to clinical-grade use.</p>
-      </div>
-      <div class="step">
-        <span class="n">3</span>
-        <h4>2023–2024 — Closed loop</h4>
-        <p>Designed the inflatable reservoir + one-way valve mask. First prototype where FiH₂ at the mask stayed defined across a full session.</p>
-      </div>
-      <div class="step">
-        <span class="n">4</span>
-        <h4>2025–2026 — Launch &amp; recognition</h4>
-        <p>Canada's SR&amp;ED program recognized the work. Dr. LeBaron joined as Chief Scientific Officer. Carrick Institute adopted the device as a clinical tool.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Team -->
-<section class="section reviews">
-  <div class="container">
-    <span class="eyebrow">The people</span>
-    <h2>Two founders. One scientific conscience.</h2>
-    <div class="reviews-grid" style="margin-top: var(--s-8);">
-      <div class="review-card">
-        <div class="review-meta" style="margin-bottom: var(--s-5);">
-          <img src="assets/img/profile-1.jpg" alt="" style="width: 64px; height: 64px;" />
-          <div>
-            <div class="who" style="font-size: 17px;">Alex Tarnava</div>
-            <div class="role">Founder · Inventor of open-cup H₂ tablets</div>
-          </div>
-        </div>
-        <p class="quote">"I spent a decade watching hydrogen products get better at marketing and not much else. The only thing I really wanted was a device I could point at and say: this is exactly what you're getting. That's what InhaleH₂ is."</p>
-      </div>
-      <div class="review-card">
-        <div class="review-meta" style="margin-bottom: var(--s-5);">
-          <img src="assets/img/profile-2.jpg" alt="" style="width: 64px; height: 64px;" />
-          <div>
-            <div class="who" style="font-size: 17px;">Dr. Tyler LeBaron, MSc, PhD</div>
-            <div class="role">Chief Scientific Officer</div>
-          </div>
-        </div>
-        <p class="quote">"I've been cautious about endorsing consumer hydrogen products, for the obvious reason. I signed on as CSO because this is the first one where the engineering respects the research."</p>
-      </div>
-      <div class="review-card">
-        <div class="review-meta" style="margin-bottom: var(--s-5);">
-          <img src="assets/img/profile-3.jpg" alt="" style="width: 64px; height: 64px;" />
-          <div>
-            <div class="who" style="font-size: 17px;">The InhaleH₂ team</div>
-            <div class="role">Engineering · Medical · Support</div>
-          </div>
-        </div>
-        <p class="quote">"A small team of biomedical engineers, mechanical engineers, and clinicians. Everyone who joins signs up for one thing: don't ship anything you can't defend with data."</p>
+<!-- =========================================================
+     PULL QUOTE — Dr. LeBaron
+     ========================================================= -->
+<section class="pull-quote">
+  <div class="story-container pull-quote-inner">
+    <span class="mark">&ldquo;</span>
+    <blockquote>
+      I've been cautious about endorsing consumer hydrogen products, for the obvious reason. <em>I signed on as Chief Scientific Officer because this is the first one where the engineering respects the research.</em>
+    </blockquote>
+    <div class="who">
+      <img src="assets/img/profile-2.jpg" alt="Dr. Tyler LeBaron" />
+      <div>
+        <div class="name">Dr. Tyler LeBaron, MSc, PhD</div>
+        <div class="role">Chief Scientific Officer · Molecular hydrogen researcher</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Values -->
-<section class="section">
-  <div class="container">
-    <span class="eyebrow">What we believe</span>
-    <h2>Three principles we won't compromise.</h2>
-    <div class="value-grid" style="margin-top: var(--s-10);">
-      <div class="value-card">
-        <div class="ico">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
-        </div>
-        <h4>Dose is the product.</h4>
-        <p>Every engineering decision goes through the question: does this help us deliver a defined, repeatable dose? If not, it's off the table.</p>
-      </div>
-      <div class="value-card">
-        <div class="ico">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21v-2a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-        </div>
-        <h4>Don't outrun the science.</h4>
-        <p>We never make a claim we can't cite. When something isn't settled, we say so. Wellness doesn't mean loose language.</p>
-      </div>
-      <div class="value-card">
-        <div class="ico">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4l16 8-16 8 4-8-4-8z"/></svg>
-        </div>
-        <h4>Make it last 10 years.</h4>
-        <p>Medical-grade parts. Maintainable. Repairable. We don't build disposables.</p>
-      </div>
+<!-- =========================================================
+     TIMELINE
+     ========================================================= -->
+<section class="timeline">
+  <div class="story-container">
+    <div class="timeline-head">
+      <span class="story-eyebrow" style="color: var(--story-blue);">— Chapter II · Seven years, in plain prose</span>
+      <h2>The work, <em>year by year.</em></h2>
     </div>
-  </div>
-</section>
 
-<!-- Big closing band -->
-<section class="section section--tight">
-  <div class="container">
-    <div class="b2b-band" style="background: linear-gradient(135deg, var(--ink) 0%, var(--blue-700) 100%);">
-      <div class="b2b-band-grid">
+    <div class="timeline-list">
+      <div class="timeline-item">
         <div>
-          <span class="eyebrow" style="color: var(--mint);">Hydrogen Therapy Perfected</span>
-          <h2>We took seven years. You get fifteen minutes.</h2>
-          <p class="lead" style="color: rgba(255,255,255,.78); max-width: 480px;">The inhaler is built for a simple daily protocol. One that fits a real life — and compounds.</p>
-          <div style="display: flex; gap: 12px; margin-top: 24px; flex-wrap: wrap;">
-            <a class="btn btn--primary btn--lg" href="product.html">Shop the inhaler →</a>
-            <a class="btn btn--ghost-light btn--lg" href="science.html">See the science</a>
-          </div>
+          <div class="year">2019<span class="year-label">First principles</span></div>
         </div>
         <div>
-          <img src="assets/img/product-main.webp" alt="InhaleH2" style="border-radius: var(--radius-lg);" />
+          <h3>Started with a question, not a product.</h3>
+          <p>What would it take to deliver a defined concentration of H₂ to the lungs, breath after breath, without leakage? The whiteboard sketch from that month is still framed in the lab.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div>
+          <div class="year">2020<span class="year-label">Cell &amp; membrane</span></div>
+        </div>
+        <div>
+          <h3>SPE/PEM electrolysis, finalised.</h3>
+          <p>Settled on Solid Polymer Electrolyte / Proton Exchange Membrane cell with platinum-coated titanium electrodes. Pure H₂ output, no chlorine or ozone byproducts, durable to clinical-grade use.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div>
+          <div class="year">2022<span class="year-label">Closed loop</span></div>
+        </div>
+        <div>
+          <h3>The reservoir + valve combination that works.</h3>
+          <p>An inflatable reservoir buffers H₂ between breaths. A patented one-way valve at the mask prevents room-air dilution. First prototype where FiH₂ at the mask stayed defined across a full session.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div>
+          <div class="year">2024<span class="year-label">Recognition</span></div>
+        </div>
+        <div>
+          <h3>Canada's SR&amp;ED program recognised the work.</h3>
+          <p>Federal recognition under the Scientific Research &amp; Experimental Development program. Independent confirmation that the engineering is doing something the field hadn't done before.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div>
+          <div class="year">2025<span class="year-label">CSO</span></div>
+        </div>
+        <div>
+          <h3>Dr. Tyler LeBaron joined as Chief Scientific Officer.</h3>
+          <p>After two years of evaluation. The first hydrogen inhaler he agreed to put his name on, in a decade of saying no to others.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div>
+          <div class="year">2026<span class="year-label">Launch</span></div>
+        </div>
+        <div>
+          <h3>Carrick Institute adopts as a clinical tool. We ship.</h3>
+          <p>Direct-to-consumer launch alongside a clinical channel. The system you see today is the eighth full revision. The next one is already in the lab.</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- =========================================================
+     FOUNDERS
+     ========================================================= -->
+<section class="founders">
+  <div class="story-container">
+    <div class="founders-head">
+      <span class="story-eyebrow" style="justify-content: center; color: var(--story-blue);">— Chapter III · The people</span>
+      <h2>Two founders. <em>One scientific conscience.</em></h2>
+      <p>A small team of biomedical engineers, mechanical engineers, and clinicians. Everyone who joins signs up for one thing: don't ship anything you can't defend with data.</p>
+    </div>
+
+    <div class="founders-grid">
+      <article class="founder">
+        <div class="founder-portrait">
+          <img src="assets/img/profile-1.jpg" alt="Alex Tarnava" />
+        </div>
+        <div class="founder-body">
+          <div>
+            <h3 class="founder-name">Alex Tarnava</h3>
+            <div class="founder-role">Founder · Inventor of open-cup H₂ tablets</div>
+          </div>
+          <p class="founder-bio">A decade in the molecular hydrogen field, including the patents that put H₂ tablets on the consumer map. Started InhaleH₂ when it became clear that water-based delivery had a ceiling that inhalation could break through — but only with a closed system designed for it.</p>
+          <p class="founder-quote">I spent ten years watching hydrogen products get better at marketing and not much else. The only thing I really wanted was a device I could point at and say: this is exactly what you're getting.</p>
+        </div>
+      </article>
+
+      <article class="founder">
+        <div class="founder-portrait">
+          <img src="assets/img/profile-2.jpg" alt="Dr. Tyler LeBaron" />
+        </div>
+        <div class="founder-body">
+          <div>
+            <h3 class="founder-name">Dr. Tyler LeBaron, MSc, PhD</h3>
+            <div class="founder-role">Chief Scientific Officer · Molecular Hydrogen Institute</div>
+          </div>
+          <p class="founder-bio">Among the most-cited active researchers in molecular hydrogen, with publications across mechanism, dose-response, and clinical-application research. Founded the Molecular Hydrogen Institute. Took years to agree to attach his name to a consumer product.</p>
+          <p class="founder-quote">The dose isn't a marketing claim — it's an engineering spec. That's the difference. That's why I said yes.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     LAB / PROCESS
+     ========================================================= -->
+<section class="lab-section">
+  <div class="story-container">
+    <div class="lab-head">
+      <div>
+        <span class="story-eyebrow" style="color: var(--story-blue);">— Chapter IV · Inside the lab</span>
+        <h2>How the work actually happens.</h2>
+      </div>
+      <p>Eight prototype generations. Hundreds of hours of breath-modeling. A platinum-coated titanium electrode that took eleven months to land on. Photographs from the workshop and the lab.</p>
+    </div>
+
+    <div class="lab-grid">
+      <div class="lab-card tall">
+        <img src="assets/img/product-main.webp" alt="The InhaleH2 inhaler" />
+        <div class="caption">
+          <span class="label">The system</span>
+          <p class="title">A patented closed-loop, eight revisions deep.</p>
+        </div>
+      </div>
+      <div class="lab-card">
+        <img src="assets/img/atm-bubbles-1.jpg" alt="Hydrogen bubbles" />
+        <div class="caption">
+          <span class="label">Inside the cell</span>
+          <p class="title">Pure H₂, separated cleanly.</p>
+        </div>
+      </div>
+      <div class="lab-card">
+        <img src="assets/img/product-detail.webp" alt="Mask detail" />
+        <div class="caption">
+          <span class="label">At the mask</span>
+          <p class="title">The one-way valve that keeps the dose in.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     PRINCIPLES (manifesto)
+     ========================================================= -->
+<section class="principles">
+  <div class="story-container principles-inner">
+    <div class="principles-eyebrow">— Chapter V · What we won't compromise</div>
+    <h2>Three principles. <em>No exceptions.</em></h2>
+
+    <div class="principles-list">
+      <div class="principle">
+        <div class="num">i.</div>
+        <div>
+          <h4>Dose is the product.</h4>
+          <p>Every engineering decision goes through one question: does this help us deliver a defined, repeatable dose? If not, it's off the table. Features that look good in a comparison chart but compromise the dose don't ship.</p>
+        </div>
+      </div>
+      <div class="principle">
+        <div class="num">ii.</div>
+        <div>
+          <h4>Don't outrun the science.</h4>
+          <p>We never make a claim we can't cite. When something isn't settled, we say so. Wellness doesn't mean loose language. The strongest argument for our category is the truth — and we're holding ourselves to it.</p>
+        </div>
+      </div>
+      <div class="principle">
+        <div class="num">iii.</div>
+        <div>
+          <h4>Build it to last ten years.</h4>
+          <p>Medical-grade parts. Maintainable, repairable, supportable. We don't build disposables. The goal is a device a customer keeps next to the bed for a decade — not a product that obsoletes itself by next holiday season.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     CLOSING / CTA
+     ========================================================= -->
+<section class="closing">
+  <div class="story-container closing-inner">
+    <span class="mark">— Chapter VI · The next breath</span>
+    <h2>We took seven years. <em>You get fifteen minutes.</em></h2>
+    <div class="closing-ctas">
+      <a class="btn btn--primary btn--lg" href="product.html">Shop the inhaler →</a>
+      <a class="btn btn--ghost btn--lg" href="science.html">See the science</a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
 <footer class="footer">
   <div class="container footer-inner">
     <div class="footer-top">
@@ -195,7 +947,7 @@
       </div>
       <div class="footer-col"><h5>Shop</h5><ul><li><a href="product.html">The Inhaler</a></li><li><a href="#">Replacement parts</a></li><li><a href="#">Accessories</a></li><li><a href="practitioners.html">Wholesale</a></li></ul></div>
       <div class="footer-col"><h5>Learn</h5><ul><li><a href="science.html">Science</a></li><li><a href="#">Protocols</a></li><li><a href="#">Research library</a></li><li><a href="journal.html">Journal</a></li></ul></div>
-      <div class="footer-col"><h5>Company</h5><ul><li><a href="story.html">Our story</a></li><li><a href="#">Press</a></li><li><a href="#">Careers</a></li><li><a href="#">Contact</a></li></ul></div>
+      <div class="footer-col"><h5>Company</h5><ul><li><a href="story-redesign.html">Our story</a></li><li><a href="#">Press</a></li><li><a href="#">Careers</a></li><li><a href="#">Contact</a></li></ul></div>
     </div>
     <div class="footer-bottom">
       <div>© 2026 InhaleH₂ Technologies. Hydrogen Therapy Perfected.</div>
@@ -203,6 +955,19 @@
     </div>
   </div>
 </footer>
+
+<script>
+// Subtle scroll reveal
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) e.target.classList.add('in');
+  });
+}, { threshold: 0.12 });
+document.querySelectorAll('.story-chapter, .timeline-item, .founder, .lab-card, .principle, .pull-quote blockquote, .manifesto-text, .closing h2').forEach(el => {
+  el.classList.add('reveal');
+  io.observe(el);
+});
+</script>
 
 <script src="assets/js/site.js"></script>
 </body>
